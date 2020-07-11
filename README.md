@@ -9,3 +9,6 @@ My goals are:
 2. The basics: environment setup, basic sintax, loops, basic resources.
 3. File manipulation
 4. Define next topics
+
+# Links
+1. [THE Tutorial](https://bugs.python.org/file47781/Tutorial_EDIT.pdf)
