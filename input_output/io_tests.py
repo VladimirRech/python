@@ -23,3 +23,28 @@ print('\tPackaging: {:.3f}'.format(package))
 print('\tTaxes: {:.2f}'.format(taxes))
 print('\tTotal {:.2f}'.format(totalCost))
 print()
+
+print("It's possibile represent string literals with repr()")
+phrase = "Mary had\ta litle lamb\n\r"
+print("This is the normal result, formatted:")
+print(phrase)
+print("And this, is the literal value:")
+print(repr(phrase))
+print()
+
+print("Using formatting with a fixed number of decimal places (6f)")
+import math
+print(f"The value of pi is approximately {math.pi:.15f}.")
+print()
+
+print("Formatting with fixed spaces to numbers:")
+phones = { 'Joe': 4399223311, 'Ann': 4199112345, 'Carol': 1198765432 }
+for name, phone in phones.items():
+    print(f'{name:10} ==> {phone:10d}')
+    
+print()
+
+print("Using positional and named arguments to String.format():")
+print('\tThe {0} of the {fruit} is {price:.2f} without {1}'.format('costs'
+        , 'packaging', fruit='guava', price=4.5))
+print()
