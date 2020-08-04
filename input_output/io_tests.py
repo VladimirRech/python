@@ -48,3 +48,16 @@ print("Using positional and named arguments to String.format():")
 print('\tThe {0} of the {fruit} is {price:.2f} without {1}'.format('costs'
         , 'packaging', fruit='guava', price=4.5))
 print()
+
+print('There is another useful function: rjust, it right align text.')
+for x in range(1, 11):
+    print(repr(x).rjust(2), repr(x*x).rjust(3), end=' ')
+    print(repr(x*x*x).rjust(4))
+    
+print()
+
+words = enumerate(['Apple', 'Avocado', 'Berries', 'Banana', 'Coconut',
+                    'Pineapple'])
+for w in words:
+    print(repr(w).center(80))
+print()
