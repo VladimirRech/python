@@ -19,5 +19,5 @@ df_new = pd.DataFrame(list(counter.items()), columns = ['date', 'occurrences'])
 
 # iniciando alguns filtros
 df_max_values = df_new[df_new.occurrences > 4]
-print('\nCom 6 ocorrências\n')
+print('\nCom 4+ ocorrências\n')
 print(df_max_values.head(20))
