@@ -12,6 +12,7 @@ col_tot = 'code'
 df = pd.read_csv(file_name, sep = col_sep)
 # gera p resumo
 swap = df[col_tot].value_counts();
-print(swap)
 
+# TODO: imprimir a primeira coluna e o valor total em vez de 
+#       o DF inteiro
 print('Done!')
