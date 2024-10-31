@@ -42,4 +42,4 @@ print(csv.info())
 print(csv.head())
 print('\n\n')
 
-csv.to_csv('temp.csv', index=False)
+# csv.to_csv('temp.csv', index=False)
