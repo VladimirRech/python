@@ -12,33 +12,52 @@
 3. Com os dados filtrados, traga o valor médio para a coluna "duration"
 
 Milestone 1
-- Implantar conforme lista de funcionalidades
+- Implantar conforme lista de funcionalidades.
 
 Milestone 2
-- Implantar tratamento de erros com exception
+- Implantar tratamento de erros com exception.
+
+Milestone 3
+- Mostrar duração em anos, dias e meses.
 
 """
 import pandas as pd
+import sys
 
 filename = "job_duration.csv"
 filter_column = "country"
 filter_values = ["Brazil", "Portugal", "Croatia"]
 duration_column = "duration"
+has_error = False
 
-df = pd.read_csv(filename, sep=';')
-df[duration_column] = pd.to_datetime(df["fire_date"]) - \
-    pd.to_datetime(df["hire_date"])
-df_filtered = df[df[filter_column].isin(filter_values)]
 
-max_duration = df_filtered[duration_column].max()
-max_country = df_filtered[df_filtered[duration_column] == max_duration]["country"].values[0]
-max_full_name = df_filtered[df_filtered[duration_column] == max_duration]["full_name"].values[0]
+try:
+   df = pd.read_csv(filename, sep=';')
+   df[duration_column] = pd.to_datetime(df["fire_date"]) - \
+      pd.to_datetime(df["hire_date"])
+   df_filtered = df[df[filter_column].isin(filter_values)]
 
-min_duration = df_filtered[duration_column].min()
-min_country = df_filtered[df_filtered[duration_column] == min_duration]["country"].values[0]
-min_full_name = df_filtered[df_filtered[duration_column] == min_duration]["full_name"].values[0]
+   max_duration = df_filtered[duration_column].max()
+   max_country = df_filtered[df_filtered[duration_column] == max_duration]["country"].values[0]
+   max_full_name = df_filtered[df_filtered[duration_column] == max_duration]["full_name"].values[0]
 
-mean_duration = df_filtered[duration_column].mean()
+   min_duration = df_filtered[duration_column].min()
+   min_country = df_filtered[df_filtered[duration_column] == min_duration]["country"].values[0]
+   min_full_name = df_filtered[df_filtered[duration_column] == min_duration]["full_name"].values[0]
+
+   mean_duration = df_filtered[duration_column].mean()
+
+except FileNotFoundError:
+   has_error = True
+   print(f"File {filename} not found.")
+
+except Exception as e:
+   has_error = True
+   print(f"Ops, an error has ocurred: {e}")
+
+finally:
+   if has_error:
+      sys.exit()
 
 print("Results:\n")
 print("\tMax values:\n")
