@@ -23,6 +23,25 @@ Milestone 3
 """
 import pandas as pd
 import sys
+from datetime import timedelta
+
+#
+# Convert time delta to string containg Year, Months and days
+# Input: timedelta value, return: string with year, months and days
+#
+def delta_to_string(delta):
+    YEAR_DAYS = 365
+    MONTH_DAYS = 30
+    total_days = delta.days
+    elapsed_years = total_days // YEAR_DAYS
+    elapsed_months = (total_days % YEAR_DAYS) // MONTH_DAYS
+    elapsed_days = (total_days % YEAR_DAYS) % MONTH_DAYS 
+    str_ret = f"years: {elapsed_years}" if elapsed_years > 0 else ""
+    str_ret = str_ret + f", " if len(str_ret) > 0 and elapsed_months > 0 else ""
+    str_ret = str_ret + f"months: {elapsed_months}" if elapsed_months > 0 else ""
+    str_ret = str_ret + f", " if len(str_ret) > 0 and elapsed_days > 0 else ""
+    str_ret = str_ret + f"days: {elapsed_days}" if elapsed_days > 0 else ""
+    return str_ret
 
 filename = "job_duration.csv"
 filter_column = "country"
@@ -61,12 +80,11 @@ finally:
 
 print("Results:\n")
 print("\tMax values:\n")
-print(f"\t\tDuration: {max_duration}\n\t\tCountry: {max_country}\n\t\tFull name: {max_full_name}\n\n")
-print("Done")
+print(f"\t\tDuration: {max_duration}, ({delta_to_string(max_duration)})\n\t\tCountry: {max_country}\n\t\tFull name: {max_full_name}\n\n")
 
 print("\tMin values:\n")
-print(f"\t\tDuration: {min_duration}\n\t\tCountry: {min_country}\n\t\tFull name: {min_full_name}\n\n")
+print(f"\t\tDuration: {min_duration}, ({delta_to_string(min_duration)})\n\t\tCountry: {min_country}\n\t\tFull name: {min_full_name}\n\n")
 
-print(f"\tMean: {mean_duration}\n")
+print(f"\tMean: {mean_duration}, ({delta_to_string(mean_duration)})\n")
 
 print("Done")
